@@ -4,7 +4,7 @@ import './styles/index.css';
 import App from './components/App';
 import reportWebVitals from './reportWebVitals';
 
-// 1
+// 1 - apollo client import
 import {
   ApolloProvider,
   ApolloClient,
@@ -12,19 +12,20 @@ import {
   InMemoryCache
 } from '@apollo/client';
 
-// 2
+// 2 - creating endpoint for server
 const httpLink = createHttpLink({
   uri: 'http://localhost:4000'
 });
 
-// 3
+// 3 - bringing up new instance
 const client = new ApolloClient({
   link: httpLink,
   cache: new InMemoryCache()
 });
 
 ReactDOM.render(
-  <ApolloProvider client={client}>
+// 4 - binding up pollo provider with passing client instance  
+  <ApolloProvider client={client}>  
     <App />
   </ApolloProvider>,
   document.getElementById('root')

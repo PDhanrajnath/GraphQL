@@ -1,49 +1,44 @@
+import { useQuery, gql } from "@apollo/client";
 // import React from 'react';
-import Link from './Link';
-import { useQuery, gql } from '@apollo/client';
+import Link from "./link";
 
 const FEED_QUERY = gql`
   {
-    feed {
-      id
-      links {
-        id
-        createdAt
-        url
-        description
-      }
+    books {
+      title
+      author
     }
   }
 `;
 
 const LinkList = () => {
-    const { data } = useQuery(FEED_QUERY);
-  
-    return (
-      <div>
-        {data && (
-          <>
-            {data.feed.links.map((link) => (
-              <Link key={link.id} link={link} />
-            ))}
-          </>
-        )}
-      </div>
-    );
-  };
+  const { data } = useQuery(FEED_QUERY);
+
+  return (
+    <div>
+      {data && (
+        <>
+          {data.books.map((link) => (
+            <Link key={link.id} link={link} />
+          ))}
+        </>
+      )}
+    </div>
+  );
+};
 
 // const LinkList = () => {
 //   const linksToRender = [
 //     {
 //       id: '1',
-//       description:
+//       title:
 //         'Prisma gives you a powerful database toolkit 😎',
-//       url: 'https://prisma.io'
+//       author: 'https://prisma.io'
 //     },
 //     {
 //       id: '2',
-//       description: 'The best GraphQL client',
-//       url: 'https://www.apollographql.com/docs/react/'
+//       title: 'The best GraphQL client',
+//       author: 'https://www.apollographql.com/docs/react/'
 //     }
 //   ];
 
